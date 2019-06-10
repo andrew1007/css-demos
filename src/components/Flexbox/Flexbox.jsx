@@ -11,7 +11,10 @@ export default class Flexbox extends React.Component {
       display: 'flex',
       width: 'unset',
       height: 'unset',
-      flexDirection: 'unset'
+      flexDirection: 'unset',
+      flexWrap: 'unset',
+      childrenCount: 3,
+      containerCount: 1,
     }
   }
 
@@ -21,25 +24,39 @@ export default class Flexbox extends React.Component {
     if (['width', 'height'].includes(style)) {
       val = !Number(inputVal) ? inputVal : `${inputVal}px`
     }
+    if (style === 'display') {
+      val = inputVal || 'flex'
+    }
     this.setState({ [style]: val })
   }
 
+  addChild = () => this.setState({ childrenCount: Math.max(1, this.state.childrenCount + 1) })
+  removeChild = () => this.setState({ childrenCount: Math.max(1, this.state.childrenCount - 1) })
+  addContainer = () => this.setState({ containerCount: Math.max(1, this.state.containerCount + 1) })
+  removeContainer = () => this.setState({ containerCount: Math.max(1, this.state.containerCount - 1) })
+
   render() {
+    const { childrenCount, containerCount, ...styles } = this.state
     const containerStyles = {
       border: '1px solid #8596b2',
       padding: 10,
-      ...this.state,
+      margin: 10,
+      ...styles,
     }
 
     return (
       <React.Fragment>
-        <div style={{ marginTop: 20 }}>
+        <div style={{ marginTop: 20, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <FlexboxPropertyInput onChange={this.changeStyle('width')}>
             container width
           </FlexboxPropertyInput>
 
           <FlexboxPropertyInput onChange={this.changeStyle('height')}>
             container height
+          </FlexboxPropertyInput>
+
+          <FlexboxPropertyInput onChange={this.changeStyle('display')}>
+            container display (default: flex)
           </FlexboxPropertyInput>
 
           <FlexboxPropertyInput onChange={this.changeStyle('flexDirection')}>
@@ -49,23 +66,44 @@ export default class Flexbox extends React.Component {
           </FlexboxPropertyInput>
 
           <FlexboxPropertyInput onChange={this.changeStyle('justifyContent')}>
-            <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox#justify-content">
+            <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content">
               justify-content
             </a>
           </FlexboxPropertyInput>
 
           <FlexboxPropertyInput onChange={this.changeStyle('alignItems')}>
-            <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox#Alignment_justification_and_distribution_of_free_space_between_items">
+            <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/CSS/align-items">
               align-items
             </a>
           </FlexboxPropertyInput>
-        </div>
-        <div style={{ display: 'flex', justifyContent: 'center', marginTop: 50 }}>
-          <div style={containerStyles}>
-            <FlexboxChild name={'child 1'} />
-            <FlexboxChild name={'child 2'} />
-            <FlexboxChild name={'child 3'} />
+          <FlexboxPropertyInput onChange={this.changeStyle('flexWrap')}>
+            <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap">
+              flex-wrap
+            </a>
+          </FlexboxPropertyInput>
+          <div>
+            <button onClick={this.addChild}>
+              Add child
+            </button>
+            <button onClick={this.removeChild}>
+              Remove child
+            </button>
           </div>
+          <div>
+          <button onClick={this.addContainer}>
+              Add container
+            </button>
+            <button onClick={this.removeContainer}>
+              Remove container
+            </button>
+          </div>
+        </div>
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: 50, border: '2px solid purple', padding: 5 }}>
+          {[...Array(containerCount)].map(_ => (
+            <div style={containerStyles}>
+              {[...Array(childrenCount)].map((_, idx) => <FlexboxChild name={`child ${idx + 1}`} />)}
+            </div>
+          ))}
         </div>
       </React.Fragment>
     )

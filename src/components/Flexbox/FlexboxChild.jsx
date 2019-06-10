@@ -23,8 +23,10 @@ export default class FlexboxChild extends React.Component {
       <div style={childStyles}>
         {this.props.name}
         <div style={{ marginTop: 10 }}>
-          flex-grow
-          <input onChange={this.changeStyle('flexGrow')} style={{width: 30}}/>
+          <div>
+            flex-grow
+          </div>
+          <input onChange={this.changeStyle('flexGrow')} style={{width: 20}}/>
         </div>
       </div>
     )
