@@ -6,6 +6,8 @@ import Flexbox from './components/Flexbox/Flexbox'
 import ParallelChildrenAlignment from './components/ParallelChildrenAlignment';
 import PercentDimensions from './components/PercentDimensions';
 import Scrolling from './components/Scrolling';
+import FixedPositionInContainer from './components/FixedPositionInContainer';
+import SectionSelector from './components/SectionSelector';
 
 class App extends Component {
   constructor() {
@@ -14,8 +16,10 @@ class App extends Component {
       containers: false,
       position: false,
       flexBox: false,
-      parallelAlignment: false,
+      parallelAlignment: true,
       percentDimensions: false,
+      scrolling: false,
+      fixedRelativePosition: false,
     }
   }
 
@@ -30,15 +34,10 @@ class App extends Component {
       position,
       flexBox,
       parallelAlignment,
-      percentDimensions
+      percentDimensions,
+      scrolling,
+      fixedRelativePosition
     } = this.state
-    const buttonStyles = {
-      fontSize: 20,
-      border: '1px solid black',
-      padding: 5,
-      marginRight: 10,
-      outline: 'none',
-    }
     return (
       <div className="App" style={{ marginTop: 50 }}>
         <h2 style={{ display: 'flex', justifyContent: 'center' }}>
@@ -46,51 +45,48 @@ class App extends Component {
         </h2>
         <div>
           <div style={{ marginBottom: 30, display: 'flex', justifyContent: 'center' }}>
-            <button style={buttonStyles} onClick={this.handleShow('position')}>
-              <div style={{
-                fontWeight: position ? 700 : 'unset',
-                opacity: position ? 1 : 0.4
-              }}
-              >
-                Position
-              </div>
-            </button>
-            <button style={buttonStyles} onClick={this.handleShow('containers')}>
-              <div style={{
-                fontWeight: containers ? 700 : 'unset',
-                opacity: containers ? 1 : 0.4
-              }}
-              >
-                Containers
-              </div>
-            </button>
-            <button style={buttonStyles} onClick={this.handleShow('flexBox')}>
-              <div style={{
-                fontWeight: flexBox ? 700 : 'unset',
-                opacity: flexBox ? 1 : 0.4
-              }}
-              >
-                Flexbox
-              </div>
-            </button>
-            <button style={buttonStyles} onClick={this.handleShow('parallelAlignment')}>
-              <div style={{
-                fontWeight: parallelAlignment ? 700 : 'unset',
-                opacity: parallelAlignment ? 1 : 0.4
-              }}
-              >
-                Parallel alignment
-              </div>
-            </button>
-            <button style={buttonStyles} onClick={this.handleShow('percentDimensions')}>
-              <div style={{
-                fontWeight: percentDimensions ? 700 : 'unset',
-                opacity: percentDimensions ? 1 : 0.4
-              }}
-              >
-                Percentage dimensions
-              </div>
-            </button>
+            <SectionSelector
+              focused={position}
+              onClick={this.handleShow('position')}
+            >
+              Position
+            </SectionSelector>
+            <SectionSelector
+              focused={containers}
+              onClick={this.handleShow('containers')}
+            >
+              Containers
+            </SectionSelector>
+            <SectionSelector
+              focused={flexBox}
+              onClick={this.handleShow('flexBox')}
+            >
+              Flexbox
+            </SectionSelector>
+            <SectionSelector
+              focused={percentDimensions}
+              onClick={this.handleShow('percentDimensions')}
+            >
+              Percentage dimensions
+            </SectionSelector>
+            <SectionSelector
+              focused={scrolling}
+              onClick={this.handleShow('scrolling')}
+            >
+              Scrolling
+            </SectionSelector>
+            <SectionSelector
+              focused={fixedRelativePosition}
+              onClick={this.handleShow('fixedRelativePosition')}
+            >
+              Fixed relative positioning
+            </SectionSelector>
+            <SectionSelector
+              focused={parallelAlignment}
+              onClick={this.handleShow('parallelAlignment')}
+            >
+              Parallel alignment
+            </SectionSelector>
           </div>
           <div >
             {position ? <Position /> : null}
@@ -98,7 +94,8 @@ class App extends Component {
             {flexBox ? <Flexbox /> : null}
             {parallelAlignment ? <ParallelChildrenAlignment /> : null}
             {percentDimensions ? <PercentDimensions /> : null}
-            <Scrolling />
+            {scrolling ? <Scrolling /> : null}
+            {fixedRelativePosition ? <FixedPositionInContainer /> : null}
           </div>
         </div>
       </div>

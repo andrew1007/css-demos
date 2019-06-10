@@ -2,7 +2,6 @@ import * as React from 'react'
 
 export default class ParallelChildrenAlignment extends React.Component {
   render() {
-    const PARENT_WIDTH_1 = 200
     const parentStyles = {
       border: '1px solid black',
       height: 200,
@@ -20,7 +19,7 @@ export default class ParallelChildrenAlignment extends React.Component {
     return (
       <div style={{ marginTop: 30, display: 'flex', justifyContent: 'center' }}>
         <div>
-          <div style={{ ...parentStyles, width: PARENT_WIDTH_1 }}>
+          <div style={{ ...parentStyles, width: 200 }}>
             <div>
               parent 1
             </div>
@@ -33,10 +32,8 @@ export default class ParallelChildrenAlignment extends React.Component {
               parent 2
             </div>
             <div>
-              <div style={{ display: 'flex', justifyContent: 'flex-start', width: PARENT_WIDTH_1 }}>
-                <div style={childStyles}>
-                  child of parent 2
-                </div>
+              <div style={childStyles}>
+                child of parent 2
               </div>
             </div>
           </div>

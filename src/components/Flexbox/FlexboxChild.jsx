@@ -16,13 +16,17 @@ export default class FlexboxChild extends React.Component {
       width: 100,
       height: 100,
       margin: 5,
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
       ...this.state
     }
 
     return (
       <div style={childStyles}>
         {this.props.name}
-        <div style={{ marginTop: 10 }}>
+        <div style={{ marginTop: 10, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <div>
             flex-grow
           </div>
