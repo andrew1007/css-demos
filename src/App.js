@@ -16,9 +16,9 @@ class App extends Component {
       containers: false,
       position: false,
       flexBox: false,
-      parallelAlignment: true,
+      parallelAlignment: false,
       percentDimensions: false,
-      scrolling: false,
+      scrolling: true,
       fixedRelativePosition: false,
     }
   }
@@ -40,55 +40,58 @@ class App extends Component {
     } = this.state
     return (
       <div className="App" style={{ marginTop: 50 }}>
-        <h2 style={{ display: 'flex', justifyContent: 'center' }}>
-          CSS demos
-        </h2>
-        <div>
-          <div style={{ marginBottom: 30, display: 'flex', justifyContent: 'center' }}>
-            <SectionSelector
-              focused={position}
-              onClick={this.handleShow('position')}
-            >
-              Position
-            </SectionSelector>
-            <SectionSelector
-              focused={containers}
-              onClick={this.handleShow('containers')}
-            >
-              Containers
-            </SectionSelector>
-            <SectionSelector
-              focused={flexBox}
-              onClick={this.handleShow('flexBox')}
-            >
-              Flexbox
-            </SectionSelector>
-            <SectionSelector
-              focused={percentDimensions}
-              onClick={this.handleShow('percentDimensions')}
-            >
-              Percentage dimensions
-            </SectionSelector>
-            <SectionSelector
-              focused={scrolling}
-              onClick={this.handleShow('scrolling')}
-            >
-              Scrolling
-            </SectionSelector>
-            <SectionSelector
-              focused={fixedRelativePosition}
-              onClick={this.handleShow('fixedRelativePosition')}
-            >
-              Fixed relative positioning
-            </SectionSelector>
-            <SectionSelector
-              focused={parallelAlignment}
-              onClick={this.handleShow('parallelAlignment')}
-            >
-              Parallel alignment
-            </SectionSelector>
+        <div style={{ background: 'white', zIndex: 100, position: 'fixed', width: '100vw', display: 'flex', alignItems: 'center', flexDirection: 'column', top: 0, borderBottom: '1px solid black' }}>
+          <h2 style={{ display: 'flex', justifyContent: 'center' }}>
+            CSS demos
+          </h2>
+          <div>
+            <div style={{ marginBottom: 30, display: 'flex', justifyContent: 'center' }}>
+              <SectionSelector
+                focused={position}
+                onClick={this.handleShow('position')}
+              >
+                Position
+              </SectionSelector>
+              <SectionSelector
+                focused={containers}
+                onClick={this.handleShow('containers')}
+              >
+                Containers
+              </SectionSelector>
+              <SectionSelector
+                focused={flexBox}
+                onClick={this.handleShow('flexBox')}
+              >
+                Flexbox
+              </SectionSelector>
+              <SectionSelector
+                focused={percentDimensions}
+                onClick={this.handleShow('percentDimensions')}
+              >
+                Percentage dimensions
+              </SectionSelector>
+              <SectionSelector
+                focused={scrolling}
+                onClick={this.handleShow('scrolling')}
+              >
+                Scrolling
+              </SectionSelector>
+              <SectionSelector
+                focused={fixedRelativePosition}
+                onClick={this.handleShow('fixedRelativePosition')}
+              >
+                Fixed relative positioning
+              </SectionSelector>
+              <SectionSelector
+                focused={parallelAlignment}
+                onClick={this.handleShow('parallelAlignment')}
+              >
+                Parallel alignment
+              </SectionSelector>
+            </div>
           </div>
-          <div >
+          </div>
+          <div style={{marginTop: 150}}>
             {position ? <Position /> : null}
             {containers ? <Containers /> : null}
             {flexBox ? <Flexbox /> : null}
@@ -98,7 +101,6 @@ class App extends Component {
             {fixedRelativePosition ? <FixedPositionInContainer /> : null}
           </div>
         </div>
-      </div>
     );
   }
 }
