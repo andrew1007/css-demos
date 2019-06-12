@@ -60,24 +60,24 @@ export default class Flexbox extends React.Component {
           </FlexboxPropertyInput>
 
           <FlexboxPropertyInput onChange={this.changeStyle('flexDirection')}>
-            <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction">
+            <a target="_blank" rel="noopener noreferrer" href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction">
               flex-direction
             </a>
           </FlexboxPropertyInput>
 
           <FlexboxPropertyInput onChange={this.changeStyle('justifyContent')}>
-            <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content">
+            <a target="_blank" rel="noopener noreferrer" href="https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content">
               justify-content
             </a>
           </FlexboxPropertyInput>
 
           <FlexboxPropertyInput onChange={this.changeStyle('alignItems')}>
-            <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/CSS/align-items">
+            <a target="_blank" rel="noopener noreferrer" href="https://developer.mozilla.org/en-US/docs/Web/CSS/align-items">
               align-items
             </a>
           </FlexboxPropertyInput>
           <FlexboxPropertyInput onChange={this.changeStyle('flexWrap')}>
-            <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap">
+            <a target="_blank" rel="noopener noreferrer" href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap">
               flex-wrap
             </a>
           </FlexboxPropertyInput>
@@ -99,9 +99,9 @@ export default class Flexbox extends React.Component {
           </div>
         </div>
         <div style={{ display: 'flex', justifyContent: 'center', marginTop: 50, border: '2px solid purple', padding: 5 }}>
-          {[...Array(containerCount)].map(_ => (
-            <div style={containerStyles}>
-              {[...Array(childrenCount)].map((_, idx) => <FlexboxChild name={`child ${idx + 1}`} />)}
+          {[...Array(containerCount)].map((_, idx) => (
+            <div style={containerStyles} key={idx}>
+              {[...Array(childrenCount)].map((_, idx) => <FlexboxChild name={`child ${idx + 1}`} key={idx} />)}
             </div>
           ))}
         </div>

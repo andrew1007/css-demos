@@ -37,20 +37,20 @@ export default class Position extends React.Component {
     'fixed'
   ]
 
-  buttonsBlue = () => this.positions.map(type =>
-    <button onClick={this.positionChangeBlue(type)} style={{ marginRight: 5, opacity: this.state.positionBlue === type ? 0.3 : 1 }}>
+  buttonsBlue = () => this.positions.map((type, idx) =>
+    <button key={idx} onClick={this.positionChangeBlue(type)} style={{ marginRight: 5, opacity: this.state.positionBlue === type ? 0.3 : 1 }}>
       {type}
     </button>
   )
 
-  buttonsRed = () => this.positions.map(type =>
-    <button onClick={this.positionChangeRed(type)} style={{ marginRight: 5, opacity: this.state.positionRed === type ? 0.3 : 1 }}>
+  buttonsRed = () => this.positions.map((type, idx) =>
+    <button key={idx} onClick={this.positionChangeRed(type)} style={{ marginRight: 5, opacity: this.state.positionRed === type ? 0.3 : 1 }}>
       {type}
     </button>
   )
 
-  buttonsContainer = () => this.positions.map(type =>
-    <button onClick={this.positionChangeContainer(type)} style={{ marginRight: 5, opacity: this.state.container === type ? 0.3 : 1 }}>
+  buttonsContainer = () => this.positions.map((type, idx) =>
+    <button key={idx} onClick={this.positionChangeContainer(type)} style={{ marginRight: 5, opacity: this.state.container === type ? 0.3 : 1 }}>
       {type}
     </button>
   )

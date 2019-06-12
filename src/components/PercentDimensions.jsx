@@ -54,8 +54,9 @@ export default class PercentDimensions extends React.Component {
     this.setState(newState)
   }
 
-  positionChange = (containerName, color) => this.positions.map(type =>
+  positionChange = (containerName, color) => this.positions.map((type, idx) =>
     <button
+      key={idx}
       onClick={this.handleStyleChange(type, containerName, 'position')}
       style={{ marginRight: 5, opacity: this.state[containerName].position === type ? 0.3 : 1 }}
     >
@@ -65,8 +66,9 @@ export default class PercentDimensions extends React.Component {
     </button>
   )
 
-  displayChange = (containerName, color) => this.displays.map(type =>
+  displayChange = (containerName, color) => this.displays.map((type, idx) =>
     <button
+      key={idx}
       onClick={this.handleStyleChange(type, containerName, 'display')}
       style={{ marginRight: 5, opacity: this.state[containerName].display === type ? 0.3 : 1 }}
     >
@@ -89,8 +91,8 @@ export default class PercentDimensions extends React.Component {
     this.setState({ newState })
   }
 
-  positionButtons = () => Object.keys(this.state).map(container => (
-    <div style={{ marginBottom: 20, display: 'flex' }}>
+  positionButtons = () => Object.keys(this.state).map((container, idx) => (
+    <div style={{ marginBottom: 20, display: 'flex' }} key={idx}>
       <span style={{ marginRight: 10, color: this.state[container].color }}>
         {container}
       </span>

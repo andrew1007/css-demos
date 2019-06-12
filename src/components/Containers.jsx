@@ -56,7 +56,7 @@ export default class Containers extends React.Component {
     return (
       <div style={{ width: '100vw', display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
         <div>
-          <img src={require('../images/SO.jpg')} />
+          <img src={require('../images/SO.jpg')} alt="" />
         </div>
         <div style={{ display: 'flex', border: '1px solid black', padding: 15 }}>
           <div style={{ display: 'flex' }}>

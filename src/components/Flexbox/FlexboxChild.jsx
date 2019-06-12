@@ -12,7 +12,7 @@ export default class FlexboxChild extends React.Component {
 
   render() {
     const childStyles = {
-      backgroundColor: '#8596b2',
+      backgroundColor: 'gray',
       width: 100,
       height: 100,
       margin: 5,
